@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+</script>
+
 <template>
     <v-container>
       <v-row justify="center">
@@ -25,7 +32,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary">Login</v-btn>
+              <v-btn color="primary" @click="router.push('/')">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

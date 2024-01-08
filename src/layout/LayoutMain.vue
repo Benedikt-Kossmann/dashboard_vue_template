@@ -8,9 +8,10 @@ const theme = useTheme()
 const drawer = ref(false);
 
 const items = [
-  { title: 'Home',  icon: 'mdi-home', route: '/' },
-  { title: 'Login', icon: 'mdi-login', route: '/login' },
-  { title: 'About', icon: 'mdi-information', route: '/about' },
+  { title: 'Home',    icon: 'mdi-home',        route: '/'        },
+  { title: 'Login',   icon: 'mdi-login',       route: '/login'   },
+  { title: 'Profile', icon: 'mdi-head',        route: '/profile' },
+  { title: 'About',   icon: 'mdi-information', route: '/about'   },
 ];
 
 function navigateTo(route: string) {
@@ -29,6 +30,15 @@ async function toggleTheme(){
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>MyApp</v-toolbar-title>
+      <v-spacer></v-spacer> <!-- Platzhalter für die Ausrichtung auf der rechten Seite -->
+      <v-btn 
+        icon 
+        @click="toggleTheme"
+      >
+        <v-icon>
+          {{ theme.global.name.value === 'dark' ? 'mdi-weather-sunny' : 'mdi-weather-night' }}
+        </v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" app>
@@ -40,13 +50,6 @@ async function toggleTheme(){
           <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
-        <v-list-item>
-          <v-switch 
-            :input-value="theme.global.name.value === 'dark'" 
-            @change="toggleTheme" 
-            :label="`${theme.global.name.value === 'dark' ? 'Light' : 'Dark'}`">
-          </v-switch>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
